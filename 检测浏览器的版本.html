@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+   function browserVersion() {
+      var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+      var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
+      var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+      var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //Edge浏览器
+      var isFirefox = userAgent.indexOf("Firefox") > -1; //Firefox浏览器
+      var isOpera = userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1; //Opera浏览器
+      var isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Edge") == -1 && userAgent.indexOf("OPR") == -1; //Chrome浏览器
+      var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1 && userAgent.indexOf("Edge") == -1 && userAgent.indexOf("OPR") == -1; //Safari浏览器
+      if (isIE) {
+        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+        reIE.test(userAgent);
+        var fIEVersion = parseFloat(RegExp["$1"]);
+        if (fIEVersion == 7) {
+          alert("IE浏览器版本过低,请升级浏览器到IE 11 以上版本，或使用 chrome33以上版本！")
+          return 'IE7';
+        } else if (fIEVersion == 8) {
+          alert("IE浏览器版本过低,请升级浏览器到IE 11 以上版本，或使用 chrome33以上版本！")
+          return 'IE8';
+        } else if (fIEVersion == 9) {
+          alert("IE浏览器版本过低,请升级浏览器到IE 11 以上版本，或使用 chrome33以上版本！")
+          return 'IE9';
+        } else if (fIEVersion == 10) {
+          alert("IE浏览器版本过低,请升级浏览器到IE 11 以上版本，或使用 chrome33以上版本！")
+          return 'IE10';
+        } else {
+          alert("IE浏览器版本过低,请升级浏览器到IE 11 以上版本，或使用 chrome33以上版本！")
+          return 'IE6';//IE版本<7
+        }
+      } else if (isIE11) {
+        // return 'IE11';
+      } else if (isEdge) {
+        // return 'Edge' + userAgent.split('Edge/')[1].split('.')[0];
+      } else if (isFirefox) {
+        if (Number(userAgent.split('Firefox/')[1].split('.')[0]) < 52) {
+          alert("Firefox浏览器版本过低,请升级Firefox 52以上版本，或使用chrome 33以上版本！")
+        }
+        return 'Firefox' + userAgent.split('Firefox/')[1].split('.')[0];
+      } else if (isOpera) {
+        return 'Opera' + userAgent.split('OPR/')[1].split('.')[0];
+      } else if (isChrome) {
+        if (Number(userAgent.split('Chrome/')[1].split('.')[0]) < 33) {
+          alert("chrome浏览器版本过低,请升级chrome33以上版本！")
+        }
+        return 'Chrome' + userAgent.split('Chrome/')[1].split('.')[0];
+      } else if (isSafari) {
+        return 'Safari'; +userAgent.split('Safari/')[1].split('.')[0];
+      } else {
+        return -1;//不是ie浏览器
+      }
+    }; 
+    browserVersion();
+</script>
